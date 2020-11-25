@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Log;
 
-
+use App\Services\eventLogServices;
 class LoginController extends Controller
 {
     /*
@@ -103,9 +103,14 @@ class LoginController extends Controller
         } else {
 
             if($usuario->primeiro=='S'){
+
+                eventLogServices::create($usuario->id, 'Tentativa de Login pela primeira vez!');
                 return view('auth.passwords.email')->with('usuario', $usuario);
+
             } else {
                 if ($this->attemptLogin($request)) {
+
+                    eventLogServices::create($usuario->id, 'Login efetuado com sucesso!');
                     return $this->sendLoginResponse($request);
                 } 
 

@@ -35,9 +35,8 @@
 
     <body>
     <div id="app">
-
-        
-        @yield('menu')
+       
+        @include('menu')
         @yield('header')
         @yield('content')
     </div>

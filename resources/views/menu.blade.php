@@ -10,10 +10,12 @@
             </li>
 
 
+            @if({{ Auth::user()->nome }}=='A')
 
-            <li class="nav-item active">
-               <a class="nav-link" href=" {{ url('/home') }}">Boletos</a>
-            </li>
+               <li class="nav-item active">
+                  <a class="nav-link" href=" {{ url('/home') }}">Boletos</a>
+               </li>
+            @endif
          </ul>
 
 

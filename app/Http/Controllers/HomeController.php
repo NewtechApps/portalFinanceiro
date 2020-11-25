@@ -27,10 +27,12 @@ class HomeController extends Controller
     public function index()
     {
 
+
+
         if(Auth::user()->tipo=="A"){
             
+        } else {    
             
-            /*
             
             $string = '<?xml version="1.0"?>
                         <ConsultaBoletos xmlns="urn:boleto" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -63,7 +65,7 @@ class HomeController extends Controller
             //$soap    = simplexml_load_string(utf8_encode($teste['lcXmlOutput']));            
             //log::Debug($response);
 
-            */
+            
 
             $boletos = '';
             return view('boletos')->with('boletos', $boletos);

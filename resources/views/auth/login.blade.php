@@ -1,5 +1,5 @@
 @include('layouts.padraoLogin')
-<div class="container-fluid" style="margin-top: 20vh;">
+<div class="container-fluid" style="margin-top: 23vh;">
 
     <div class="row justify-content-center">
 
@@ -11,7 +11,7 @@
                     <img class="card-img-top" height='80' src="images/logo-new.png">
                 </div>
 
-                <div class="card-body pb-4 pl-5 pr-5">
+                <div class="card-body pb-5 pl-5 pr-5">
                     <div class="form-row col-md-12">
                         <div class="col-md-12">
                         {!! Form::label("login","Usuário" , ["class"=>"col-form-label pl-0"]) !!}
@@ -42,9 +42,7 @@
                 <div class="card-footer pl-5 pr-5">
                     <div class="form-row col-md-12">
                     <button type="submit" class="btn btn-sm btn-secondary" id="login-btn">Login</button>
-                    {{--
-                    <a class="btn btn-link" href="{{ route('password.request') }}">{{ __('Esqueceu sua Senha?') }}</a>
-                    --}}
+                    <a class="btn btn-link pr-0" style='line-height: 0.8rem; text-align: right;' href="{{ route('password.request') }}">{{ __('Esqueceu sua Senha?') }}</a>
                     </div>
                 </div>
 

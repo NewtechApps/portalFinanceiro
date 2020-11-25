@@ -1,10 +1,5 @@
 @extends('layouts.layoutPadrao')
 
-@section('menu')
-@include('menuBoleto')
-@endsection
-
-
 @section('header')
 
     {!! Form::open(['method'=>'get']) !!}
