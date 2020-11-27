@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
 
+use App\Services\eventLogServices;
 class ResetPasswordController extends Controller
 {
     /*
@@ -75,6 +76,9 @@ class ResetPasswordController extends Controller
 
     public function setUserPassword($user, $password)
     {
+
+        eventLogServices::create($user->id, 'Recadastramento de senha realizado com sucesso!');
+        $user->password = Hash::make($password);
         $user->primeiro = 'N';
     }
 

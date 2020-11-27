@@ -36,4 +36,13 @@ class Usuario extends Authenticatable
         'password',
     ];
 
+
+    public function setAttribute($key, $value)
+    {
+      $isRememberTokenAttribute = $key == $this->getRememberTokenName();
+      if (!$isRememberTokenAttribute)
+      {
+        parent::setAttribute($key, $value);
+      }
+    }
 }

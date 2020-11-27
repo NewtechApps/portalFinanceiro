@@ -39,6 +39,7 @@
         @include('menu')
         @yield('header')
         @yield('content')
+        @include('layouts\footer')
     </div>
 </body>
 </html>

@@ -15,14 +15,27 @@ use Illuminate\Support\Facades\Route;
 
 
 Auth::routes();
-Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/', function () { return view('auth.login'); });
+Route::get('/home',  'HomeController@index')->name('home');
+Route::get('/mailMessage', function () { return view('auth.mailMessage'); });
 
-Route::get('/', function () {
-    return view('auth.login');
+Route::group(['prefix' => 'usuarios'], function () {
+    Route::get('/'        , 'UsersController@index');
+    Route::get('perfil'   , 'UsersController@perfil');
+    Route::post('password', 'UsersController@password');
 });
 
-Route::get('/mailMessage', function () {
-    return view('auth.mailMessage');
+Route::group(['prefix' => 'faleConosco'], function () {
+    Route::get('/'           , 'FaleConoscoController@index');
+    Route::post('enviarEmail', 'FaleConoscoController@enviar');
 });
+
+Route::group(['prefix' => 'param'], function () {
+    Route::get('/'      , 'parametersController@index');
+    Route::post('update', 'parametersController@update');
+});
+
+
+
 

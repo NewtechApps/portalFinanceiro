@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
-
+use App\Services\eventLogServices;
 class ForgotPasswordController extends Controller
 {
     /*
@@ -26,7 +26,7 @@ class ForgotPasswordController extends Controller
 
     protected function sendResetLinkResponse(Request $request, $response)
     {
-    
+
         return $request->wantsJson()
                     ? new JsonResponse(['message' => trans($response)], 200)
                     : redirect('/mailMessage')->with('status', trans($response));

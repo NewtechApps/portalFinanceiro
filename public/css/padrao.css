@@ -12,7 +12,7 @@
 /* --------------------- */  
 body {
     font-size: 0.9rem;
-    padding-bottom: 35px;
+    padding-bottom: 35px !important;
 }
 
 
@@ -111,10 +111,6 @@ i {
 }
 
 
-.table .thead-custom th{
-    width: 250px;
-}
-
 
 .table .thead-dark th {
     background-color: steelblue;
@@ -124,24 +120,22 @@ i {
 .table
 td {
     vertical-align: middle;
-    line-height: 1.3rem;
+    line-height: 1.5rem;
     padding-top:    0.25rem;
     padding-bottom: 0.20rem;
     font-family: "Nunito";
     color: midnightblue;
 }
 
+.table 
 th {
     font-family: "Nunito";
     font-weight: normal;
+    position: sticky;
+    border-top-width: 0px;
+    top:0; 
 }
 
-
-.relEvento {
-    padding: 5px;
-    min-width: 130px;
-    color: white;
-}
 
 .dropdown-divider {
     height: 1px;
@@ -342,7 +336,6 @@ option {
 }        
 
 
-
 .navbar-expand-sm,
 .navbar-light,
 .bg-light {
@@ -365,7 +358,7 @@ option {
 .dropdown-item:active, 
 .dropdown .dropdown-menu 
 .dropdown-item:hover {
-    background-color: lightblue !important;
+    background-color: white !important;
 }
 
 .dropdown-menu{
