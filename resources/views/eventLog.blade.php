@@ -9,7 +9,6 @@
                 <li><span class="linhaMestra">Logs de Eventos do Portal</span></li>                
             </ul>
 
-            <form class="form-inline my-2 my-lg-2">
             <ul class="navbar-nav input-group input-group-sm col-md-3">
                 <div class="input-group">
                     <input id="search" class="form-control" name="search" value="{{ request('search') }}" type="text" 
@@ -24,7 +23,6 @@
                     </div>
                 </div>
             </ul>
-            </form>
         </div>
     </nav>
     @include('eventLogFiltro')

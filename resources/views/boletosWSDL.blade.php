@@ -49,7 +49,6 @@
                 <th><a class="linktd" href='#' onClick="tablesorter('vencimento');">Data Vencto.</a></th>
                 <th><a class="linktd" href='#' onClick="tablesorter('prorrogacao');">Novo Vencto.</a></th>
                 <th class="text-right">Valor Original</th>
-                <th class="text-right">Saldo</th>
                 <th class="text-right">Valor Boleto</th>
             </tr>
             </thead>
@@ -60,14 +59,13 @@
                     <td><a class='fas fa-print' title="Imprimir" href="#" target="_blank"></a>
                     <td>{{ $boleto['nome_cliente'] }}</td>
                     <td>{{ $boleto['cnpj_cliente'] }}</td>
-                    <td></td>
-                    <td></td>
+                    <td>{{ $boleto['cidade_cli'] }}</td>
+                    <td>{{ $boleto['estado_cli'] }}</td>
                     <td>{{ $boleto['titulo'].'/'.$boleto['parcela'] }}</td>
-                    <td>{{ $boleto['data_boleto'] }}</td>
+                    <td>{{ $boleto['data_emissao'] }}</td>
                     <td>{{ $boleto['data_vencimento'] }}</td>
-                    <td></td>
+                    <td>{{ $boleto['data_boleto'] }}</td>
                     <td class="text-right">{{ 'R$ '.$boleto['val_original'] }}</td>
-                    <td class="text-right">{{ 'R$ '.number_format( 0, 2, ',', '.') }}</td>
                     <td class="text-right">{{ 'R$ '.$boleto['val_calculado'] }}</td>
                 </tr>
                 @endforeach

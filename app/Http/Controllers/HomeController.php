@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use SimpleXMLElement;
 use SoapClient;
+use Carbon\Carbon;
 use Auth;
 use Log;
 
@@ -36,8 +37,12 @@ class HomeController extends Controller
             $field  = $request->get('field') ?? 'data_log';
             $sort   = $request->get('sort')  ?? 'desc';
             
+            $dataDe  = $request->dataEventosDe  ?? Carbon::now()->firstOfMonth();
+            $dataAte = $request->dataEventosAte ?? Carbon::now()->lastOfMonth();
+
             $events = DB::table('event_log')
                       ->join('usuario', 'usuario.id','=', 'event_log.user_id')
+                      ->whereBetween('data_log', [$dataDe, $dataAte])
                       ->where(function ($query) use ($search) {
                       $query->where([
                             ['name', 'like' , '%' . $search . '%'],
@@ -69,7 +74,8 @@ class HomeController extends Controller
                     $string .= '<data_final></data_final>';
                     //$string .= '<cnpj_cliente>63536825</cnpj_cliente>';
                     //$string .= '<cnpj_cliente>61565222</cnpj_cliente>';
-                    $string .= '<cnpj_cliente>72381957</cnpj_cliente>';
+                    //$string .= '<cnpj_cliente>72381957</cnpj_cliente>';
+                    $string .= '<cnpj_cliente>23119027</cnpj_cliente>';
                     $string .= '<num_id_titulo></num_id_titulo>';
                     $string .= '<data_boleto></data_boleto>';
                     $string .= '<cidade_ini></cidade_ini>';
@@ -98,7 +104,7 @@ class HomeController extends Controller
                     $xml = json_encode($xml);
                     $xml = json_decode($xml, true);
                     
-                    //log::Debug($xml);
+                   // log::Debug($xml);
                     //log::Debug($client->__getFunctions());
                     //log::Debug($client->__getLastRequest());
 
