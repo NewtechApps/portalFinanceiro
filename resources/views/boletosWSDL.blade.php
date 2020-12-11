@@ -34,7 +34,7 @@
 
 
 @section('content')
-<div class="container-fluid pt-2 pb-2">
+<div class="container-fluid pt-1 pb-2">
     <div id="main-table" class="table-responsive border border-dark rounded pb-0 pt-0 pr-0 pl-0" style='background: white'>
         <table class="table table-hover table-sm table-striped tablesorter mb-0">
             <thead class="thead-dark">

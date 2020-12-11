@@ -10,7 +10,7 @@
 
             @if(Auth::user()->tipo=='A')
                <li class="nav-item active"><a class="nav-link" href=" {{ url('/home')    }}">Logs</a></li>
-               <li class="nav-item active"><a class="nav-link" href=" {{ url('/usarios') }}">Usuários</a></li>
+               <li class="nav-item active"><a class="nav-link" href=" {{ url('/usuarios')}}">Usuários</a></li>
                <li class="nav-item active"><a class="nav-link" href=" {{ url('/param')   }}">Configurações</a></li>
             @else
                <li class="nav-item active">

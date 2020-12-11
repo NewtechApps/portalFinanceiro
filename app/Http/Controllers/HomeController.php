@@ -75,7 +75,7 @@ class HomeController extends Controller
                     //$string .= '<cnpj_cliente>63536825</cnpj_cliente>';
                     //$string .= '<cnpj_cliente>61565222</cnpj_cliente>';
                     //$string .= '<cnpj_cliente>72381957</cnpj_cliente>';
-                    $string .= '<cnpj_cliente>23119027</cnpj_cliente>';
+                    $string .= '<cnpj_cliente>'.Auth::user()->login.'</cnpj_cliente>';
                     $string .= '<num_id_titulo></num_id_titulo>';
                     $string .= '<data_boleto></data_boleto>';
                     $string .= '<cidade_ini></cidade_ini>';
@@ -92,8 +92,8 @@ class HomeController extends Controller
                     $string .= '</consultaBoletos>';
                     $params = array('lcXmlInput'=>$string);
 
-
-                    $client = new SoapClient( $url->value.'/wsdl?targetURI=urn:paramount', array('trace' => 1)); 
+                    log::Debug($string);
+                    $client = new SoapClient( $url->value.'/wsdl?targetURI=urn:'.env("APP_WSDL_URN") , array('trace' => 1)); 
                     $client->__setLocation( $url->value );
                     $response = $client->consultaBoletos($params);
 
@@ -104,16 +104,18 @@ class HomeController extends Controller
                     $xml = json_encode($xml);
                     $xml = json_decode($xml, true);
                     
-                   // log::Debug($xml);
+                    //log::Debug($xml);
                     //log::Debug($client->__getFunctions());
                     //log::Debug($client->__getLastRequest());
+                    return view('boletosWSDL')->with('boletos', $xml);
 
                     
                 } catch (\Exception $e) {
                     //eventLogServices::create(Auth::user()->id, 'Erro de comunicação: '.$e->getMessage());
                     log::Debug($e->getMessage());
+                    $xml = array('RetornaBoletos'=>[]);
+                    return view('boletosWSDL')->with('boletos', $xml);
                 }
-                return view('boletosWSDL')->with('boletos', $xml);
                     
 
             } else {

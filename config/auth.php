@@ -38,12 +38,12 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
-            'provider' => 'usuario',
+            'provider' => 'users',
         ],
 
         'api' => [
             'driver' => 'token',
-            'provider' => 'usuario',
+            'provider' => 'users',
             'hash' => false,
         ],
     ],
@@ -66,7 +66,7 @@ return [
     */
 
     'providers' => [
-        'usuario' => [
+        'users' => [
             'driver' => 'eloquent',
             'model' => App\Models\Usuario::class,
         ],
@@ -93,8 +93,8 @@ return [
     */
 
     'passwords' => [
-        'usuario' => [
-            'provider' => 'usuario',
+        'users' => [
+            'provider' => 'users',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

@@ -23,6 +23,7 @@ Route::get('/mailMessage', function () { return view('auth.mailMessage'); });
 Route::group(['prefix' => 'usuarios'], function () {
     Route::get('/'        , 'UsersController@index');
     Route::get('perfil'   , 'UsersController@perfil');
+    Route::post('create'  , 'UsersController@create');
     Route::post('password', 'UsersController@password');
 });
 
