@@ -72,9 +72,6 @@ class HomeController extends Controller
                     $string .= '<transacao>boleto</transacao>';
                     $string .= '<data_inicial></data_inicial>';
                     $string .= '<data_final></data_final>';
-                    //$string .= '<cnpj_cliente>63536825</cnpj_cliente>';
-                    //$string .= '<cnpj_cliente>61565222</cnpj_cliente>';
-                    //$string .= '<cnpj_cliente>72381957</cnpj_cliente>';
                     $string .= '<cnpj_cliente>'.Auth::user()->login.'</cnpj_cliente>';
                     $string .= '<num_id_titulo></num_id_titulo>';
                     $string .= '<data_boleto></data_boleto>';
@@ -95,23 +92,22 @@ class HomeController extends Controller
                     log::Debug($string);
                     $client = new SoapClient( $url->value.'/wsdl?targetURI=urn:'.env("APP_WSDL_URN") , array('trace' => 1)); 
                     $client->__setLocation( $url->value );
-                    $response = $client->consultaBoletos($params);
 
+                    $response = $client->consultaBoletos($params);
                     $response = json_encode($response);
                     $response = json_decode($response, true);
 
                     $xml = new SimpleXMLElement($response['lcXmlOutput']);
-                    $xml = json_encode($xml);
-                    $xml = json_decode($xml, true);
-                    
-                    //log::Debug($xml);
-                    //log::Debug($client->__getFunctions());
-                    //log::Debug($client->__getLastRequest());
-                    return view('boletosWSDL')->with('boletos', $xml);
+                    if($xml){
+                        $xml = json_encode($xml);
+                        $xml = json_decode($xml, true);
+                    } else {
+                        $xml = array('RetornaBoletos'=>[]);
+                    }
 
-                    
+                    return view('boletosWSDL')->with('boletos', $xml);
+                   
                 } catch (\Exception $e) {
-                    //eventLogServices::create(Auth::user()->id, 'Erro de comunicação: '.$e->getMessage());
                     log::Debug($e->getMessage());
                     $xml = array('RetornaBoletos'=>[]);
                     return view('boletosWSDL')->with('boletos', $xml);
