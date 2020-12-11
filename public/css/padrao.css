@@ -20,7 +20,7 @@ body {
 /*      Botões CSS       */
 /* --------------------- */  
 .fas {
-    color: midnightblue;
+    color: black;
 }
 
 i {
@@ -40,7 +40,7 @@ i {
     font-family: "Nunito";
     width: 85px;
     color: white;
-    background-color: steelblue;
+    background-color: black;
 }
 
 
@@ -65,7 +65,7 @@ i {
     font-size: 1.0rem;
     height: 28px;  
     padding-top: 0; 
-    color: midnightblue;
+    color: black;
 }
 
 
@@ -78,7 +78,7 @@ i {
     padding-top   : 0.40rem;
     padding-bottom: 0.10rem;
     font-family: "Nunito";
-    color: midnightblue;
+    color: black;
 }
 
 .form-row {
@@ -91,12 +91,12 @@ i {
     padding-right:0.45rem;
     font-family: "Nunito";
     font-size: 0.9rem;
-    color: midnightblue;
+    color: black;
     
 }   
 
 .form-control:focus {
-    border-color: steelblue;
+    border-color: black;
     box-shadow: 0 0px 3px black;
 }
 
@@ -105,7 +105,7 @@ i {
 }   
 
 .thead-dark{
-    background-color: #343a40;
+    background-color: black;
     line-height: 1rem;
     position:sticky;
 }
@@ -113,8 +113,8 @@ i {
 
 
 .table .thead-dark th {
-    background-color: steelblue;
-    border-color: steelblue;
+    background-color: black;
+    border-color: black;
 }
 
 .table
@@ -124,7 +124,7 @@ td {
     padding-top:    0.25rem;
     padding-bottom: 0.20rem;
     font-family: "Nunito";
-    color: midnightblue;
+    color: black;
 }
 
 .table 
@@ -348,7 +348,7 @@ option {
 }
 
 .bg-dark {
-    background-color: steelblue !important;
+    background-color: black !important;
     text-shadow: black 0px 0px 0px;
 }
 
@@ -362,11 +362,11 @@ option {
 }
 
 .dropdown-menu{
-    background-color: steelblue !important; 
+    background-color: black !important; 
 }
 
 .dropdown-item{
-    background-color: steelblue !important; 
+    background-color: black !important; 
 }
 
 

@@ -30,3 +30,11 @@
 
     <body>
     <div id="app">
+
+        @yield('header')
+        @yield('content')
+        @include('layouts\footer')
+
+    </div>
+</body>
+</html>
