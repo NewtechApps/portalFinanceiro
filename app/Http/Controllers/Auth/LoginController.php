@@ -166,7 +166,8 @@ class LoginController extends Controller
                     $string .= '</consultaBoletos>';
                     $params = array('lcXmlInput'=>$string);
 
-                    log::Debug($string);
+
+
                     $client = new SoapClient( $url->value.'/wsdl?targetURI=urn:'.env("APP_WSDL_URN") , array('trace' => 1)); 
                     $client->__setLocation( $url->value );
 

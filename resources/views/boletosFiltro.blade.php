@@ -11,32 +11,22 @@
 
                 <div class="col-md-3">
                 {!! Form::label("dataTituloDe", "Data Emissão de:"      , ["class"=>"col-form-label pl-0"]) !!}
-                {!! Form::date("dataTituloDe" , request('dataTituloDe') ?? now()->firstOfMonth(), ["class"=>"form-control"]) !!}
+                {!! Form::date("dataTituloDe" , request('dataTituloDe') ?? now()->subYear(), ["class"=>"form-control"]) !!}
                 </div>
 
                 <div class="col-md-3">
                 {!! Form::label("dataTituloAte", "Data Emissão até:"      , ["class"=>"col-form-label pl-0"]) !!}
-                {!! Form::date("dataTituloAte" , request('dataTituloAte') ?? now()->endOfMonth(), ["class"=>"form-control" ]) !!}
+                {!! Form::date("dataTituloAte" , request('dataTituloAte') ?? now()->today(), ["class"=>"form-control" ]) !!}
                 </div>
 
                 <div class="col-md-3">
                 {!! Form::label("dataVencDe", "Vencimento de:", ["class"=>"col-form-label pl-0"]) !!}
-                {!! Form::date("dataVencDe" , request('dataVencDe') ?? now()->firstOfMonth(), ["class"=>"form-control" ]) !!}
+                {!! Form::date("dataVencDe" , request('dataVencDe') ?? now()->subYear(), ["class"=>"form-control" ]) !!}
                 </div>
 
                 <div class="col-md-3">
                 {!! Form::label("dataVencAte", "Vencimento até:", ["class"=>"col-form-label pl-0"]) !!}
-                {!! Form::date("dataVencAte" , request('dataVencAte') ?? now()->endOfMonth(), ["class"=>"form-control"]) !!}
-                </div>
-
-                <div class="col-md-5">
-                {!! Form::label("municipio","Município",["class"=>"col-form-label pl-0"]) !!}
-                {!! Form::text("municipio", request('municipio'), ["class"=>"form-control", "maxLength"=>'100' ]) !!}
-                </div>
-
-                <div class="col-md-1">
-                {!! Form::label("estado","UF",["class"=>"col-form-label pl-0"]) !!}
-                {!! Form::text("estado", request('estado'), ["class"=>"form-control", "maxLength"=>'2' ]) !!}
+                {!! Form::date("dataVencAte" , request('dataVencAte') ?? now()->addYear(), ["class"=>"form-control"]) !!}
                 </div>
             </div>
             </div>

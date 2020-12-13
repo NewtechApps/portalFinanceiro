@@ -9,7 +9,6 @@
                 <li><span class="linhaMestra">Listagem de Boletos</span></li>                
             </ul>
 
-            <form class="form-inline my-2 my-lg-2">
             <ul class="navbar-nav input-group input-group-sm col-md-3">
                 <div class="input-group">
                     <input id="search" class="form-control" name="search" value="{{ request('search') }}" type="text" 
@@ -24,7 +23,6 @@
                     </div>
                 </div>
             </ul>
-            </form>
         </div>
     </nav>
     @include('boletosFiltro')
@@ -56,8 +54,8 @@
 
             <tbody>     
                 @foreach($boletos as $boleto)
-                <tr>
-                    <td><a class='fas fa-print' title="Imprimir" href="#" target="_blank"></a>
+                <tr> 
+                    <td><a class='fas fa-print' title="Imprimir" href="{{ url('boleto/'.$boleto->id_titulo) }}" target="_blank"></a>
                     <td>{{ $boleto->empresa }}</td>
                     <td>{{ $boleto->CNPJ }}</td>
                     <td>{{ $boleto->cidade }}</td>
@@ -87,7 +85,6 @@ $(document).ready(function(){
         $('#dataTituloDe').focus(); 
     });   
 });
-
 
 
 function tablesorter( $field )

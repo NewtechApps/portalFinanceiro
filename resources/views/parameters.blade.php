@@ -25,10 +25,13 @@
                         {!! Form::text("wsdlBoletos", $param[1]->value, ["class"=>"form-control", 'maxLength'=>'255' ]) !!}
                         </div>
 
+                        <!--
                         <div class="col-md-12">
                         {!! Form::label("imagemFundo", "Imagem de Fundo", ["class"=>"col-form-label pl-0"]) !!}
                         {!! Form::file("imagemFundo", ["class"=>"form-control form-control-file pl-0 pr-0 pt-0 pb-0", "accept"=>"image/x-png,image/gif,image/jpeg" ]) !!}
                         </div>
+                        -->
+
                     </div>
                 </div>
                 </div>

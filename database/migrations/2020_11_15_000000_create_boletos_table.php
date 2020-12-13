@@ -25,6 +25,9 @@ class CreateBoletosTable extends Migration
             $table->float('valor_original',8,2);
             $table->float('valor_saldo',8,2);
             $table->float('valor_atualizado',8,2);
+            $table->bigInteger('id_usuario',20);
+            $table->bigInteger('id_titulo',20);
+            $table->primary(['titulo', 'CNPJ', 'emissao']);
         });
     }
 
