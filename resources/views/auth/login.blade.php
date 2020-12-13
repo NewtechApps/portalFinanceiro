@@ -21,7 +21,7 @@
             @csrf
 
                 <div class="form-row col-md-12 pt-4 pl-5 pr-5" style="text-align: center;">
-                    <img class="card-img-top" height='80' src="images/logo-new.png">
+                    <img class="card-img-top" height='75' src="images/logo.png">
                 </div>
 
                 <div class="card-body pb-5 pl-5 pr-5">

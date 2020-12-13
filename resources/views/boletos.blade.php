@@ -5,7 +5,7 @@
     {!! Form::open(['method'=>'get']) !!}
     <nav class="navbar navbar-expand-sm navbar-light bg-light">    
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto font-weight-bold pl-2">
+            <ul class="navbar-nav mr-auto font-weight-bold pl-5">
                 <li><span class="linhaMestra">Listagem de Boletos</span></li>                
             </ul>
 
@@ -35,7 +35,8 @@
 
 @section('content')
 <div class="container-fluid pt-2 pb-2">
-    <div id="main-table" class="table-responsive border border-dark rounded pb-0 pt-0 pr-0 pl-0" style='background: white'>
+    <div id="main-table" class="table-responsive border border-dark rounded pb-0 pt-0 pr-0 pl-0" 
+    style='background: white; height:400px;'>
         <table class="table table-hover table-sm table-striped tablesorter mb-0">
             <thead class="thead-dark">
             <tr>
@@ -49,7 +50,6 @@
                 <th><a class="linktd" href='#' onClick="tablesorter('vencimento');">Data Vencto.</a></th>
                 <th><a class="linktd" href='#' onClick="tablesorter('prorrogacao');">Novo Vencto.</a></th>
                 <th class="text-right">Valor Original</th>
-                <th class="text-right">Saldo</th>
                 <th class="text-right">Valor Boleto</th>
             </tr>
             </thead>
@@ -67,7 +67,6 @@
                     <td>{{ date('d/m/Y', strtotime($boleto->vencimento)) }}</td>
                     <td>{{ date('d/m/Y', strtotime($boleto->prorrogacao)) }}</td>
                     <td class="text-right">{{ 'R$ '.number_format($boleto->valor_original, 2, ',', '.') }}</td>
-                    <td class="text-right">{{ 'R$ '.number_format($boleto->valor_saldo, 2, ',', '.') }}</td>
                     <td class="text-right">{{ 'R$ '.number_format($boleto->valor_atualizado, 2, ',', '.') }}</td>
                 </tr>
                 @endforeach
@@ -79,12 +78,15 @@
 
 
 <script type='text/javascript'>
-$('#search').focus();
-$('#main-table').height((window.innerHeight*0.75)+"px");
 
-$('#filtro').on('shown.bs.modal', function(e) {
-    $('#dataTituloDe').focus(); 
-});   
+$(document).ready(function(){
+    $('#search').focus();
+//    $('#main-table').height((window.innerHeight*0.62)+"px");
+
+    $('#filtro').on('shown.bs.modal', function(e) {
+        $('#dataTituloDe').focus(); 
+    });   
+});
 
 
 

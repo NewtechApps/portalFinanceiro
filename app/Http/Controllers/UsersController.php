@@ -88,6 +88,16 @@ class UsersController extends Controller
         return response()->json(['code'=>'200']);
     }
 
+    public function delete(Request $request)
+    {
+        try {
+            DB::table('boletos')->where('id', '=', $request->id)->delete();
+            DB::table('usuario')->where('id', '=', $request->id)->delete();
+        } catch (\Exception $e) {
+            log::Debug('ERRO: '.$e->getMessage());
+        }
+        return redirect($request->header('referer'));
+    }    
 
 
     public function perfil(Request $request) 
@@ -99,7 +109,15 @@ class UsersController extends Controller
     public function password(Request $request) 
     {
 
+        $validator = Validator::make( $request->all(), [
+            'senha'        => 'required|min:8|required_with:senhaConfirm|same:senhaConfirm', 
+            'senhaConfirm' => 'required',
+        ],[],[
+            'senha'        => 'Senha',
+            'senhaConfirm' => 'Confirmação de Senha',
+        ]);
     
+
         if ($validator->fails()) {
             return redirect()->back()->withInput()->with('errors', $validator->messages());
         } else {  
@@ -107,12 +125,9 @@ class UsersController extends Controller
             try {
                 DB::table('usuario')
                 ->where('id', '=', Auth::user()->id)
-                ->update([
-                    'senha' => Hash::make($request->senha),
-                ]);
+                ->update(['password' => Hash::make($request->senha)]);
 
             } catch (\Exception $e) {
-                session::put('erros', Config::get('app.messageError').' - ERRO: '.$e->getMessage() ); 
                 log::Debug($e->getMessage());
             }
 
