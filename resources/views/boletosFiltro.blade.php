@@ -11,7 +11,7 @@
 
                 <div class="col-md-3">
                 {!! Form::label("dataTituloDe", "Data Emissão de:"      , ["class"=>"col-form-label pl-0"]) !!}
-                {!! Form::date("dataTituloDe" , request('dataTituloDe') ?? now()->subYear(), ["class"=>"form-control"]) !!}
+                {!! Form::date("dataTituloDe" , request('dataTituloDe') ?? now()->subYears(5), ["class"=>"form-control"]) !!}
                 </div>
 
                 <div class="col-md-3">
@@ -20,13 +20,13 @@
                 </div>
 
                 <div class="col-md-3">
-                {!! Form::label("dataVencDe", "Vencimento de:", ["class"=>"col-form-label pl-0"]) !!}
-                {!! Form::date("dataVencDe" , request('dataVencDe') ?? now()->subYear(), ["class"=>"form-control" ]) !!}
+                {!! Form::label("dataVenctoDe", "Vencimento de:", ["class"=>"col-form-label pl-0"]) !!}
+                {!! Form::date("dataVenctoDe" , request('dataVenctoDe') ?? now()->subYears(5), ["class"=>"form-control" ]) !!}
                 </div>
 
                 <div class="col-md-3">
-                {!! Form::label("dataVencAte", "Vencimento até:", ["class"=>"col-form-label pl-0"]) !!}
-                {!! Form::date("dataVencAte" , request('dataVencAte') ?? now()->addYear(), ["class"=>"form-control"]) !!}
+                {!! Form::label("dataVenctoAte", "Vencimento até:", ["class"=>"col-form-label pl-0"]) !!}
+                {!! Form::date("dataVenctoAte" , request('dataVenctoAte') ?? now()->addYear(), ["class"=>"form-control"]) !!}
                 </div>
             </div>
             </div>

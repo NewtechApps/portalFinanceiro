@@ -63,9 +63,9 @@ class HomeController extends Controller
             $field  = $request->get('field') ?? 'emissao';
             $sort   = $request->get('sort')  ?? 'asc';
             
-            $dataEmissaoDe  = $request->dataTituloDe   ?? Carbon::now()->subYear();
+            $dataEmissaoDe  = $request->dataTituloDe   ?? Carbon::now()->subYears(5);
             $dataEmissaoAte = $request->dataTitutloAte ?? Carbon::now()->today();
-            $dataVenctoDe   = $request->dataVenctoDe   ?? Carbon::now()->subYear();
+            $dataVenctoDe   = $request->dataVenctoDe   ?? Carbon::now()->subYears(5);
             $dataVenctoAte  = $request->dataVenctoAte  ?? Carbon::now()->addYear();
 
             $boletos = DB::table('boletos')
@@ -129,6 +129,7 @@ class HomeController extends Controller
                 $response = $client->consultaBoletos($params);
                 $response = json_encode($response);
                 $response = json_decode($response, true);
+                log::Debug($response);
 
                 $xml = new SimpleXMLElement($response['lcXmlOutput']);
                 if($xml){
@@ -139,8 +140,15 @@ class HomeController extends Controller
                     $nomearquivo = $xml['RetornaBoletos']['titulo'].'-'.$xml['RetornaBoletos']['num_id_titulo'].'.pdf';
                     file_put_contents( public_path().'/downloads/'.$nomearquivo, base64_decode( $xml['RetornaBoletos']['arq_boleto']) );
 
-                    log::Debug($nomearquivo);
+                    if($nomearquivo){
 
+                        log::Debug($nomearquivo);
+                        $file = public_path(). "/downloads/".$nomearquivo;
+                        $headers = array('Content-Type: application/pdf');
+                        eventLogServices::create(Auth::user()->id, 'Usuário realizou download do titulo: '.$nomearquivo.'!');
+                        return response()->download( $file , $nomearquivo, $headers);
+                    }
+            
                 }
 
             
@@ -149,12 +157,6 @@ class HomeController extends Controller
             }
         }
 
-        if($nomearquivo){
-            $file = public_path(). "/downloads/".$nomearquivo;
-            $headers = array('Content-Type: application/pdf');
-            eventLogServices::create(Auth::user()->id, 'Usuário realizou download do titulo: '.$nomearquivo.'!');
-            return response()->download( $file , $nomearquivo, $headers);
-        }
     }
 
 }
