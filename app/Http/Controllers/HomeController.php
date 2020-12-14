@@ -48,7 +48,7 @@ class HomeController extends Controller
                       $query->where([
                             ['name', 'like' , '%' . $search . '%'],
                             ])->orWhere([
-                                ['mensagem', 'like', '%' . $search . '%'],
+                            ['mensagem', 'like', '%' . $search . '%'],
                             ]);
                        })
                        ->orderBy($field, $sort)
@@ -70,6 +70,13 @@ class HomeController extends Controller
                         ->where('id_usuario','=', Auth::user()->id)
                         ->whereBetween('emissao',    [$dataEmissaoDe, $dataEmissaoAte])
                         ->whereBetween('vencimento', [$dataVenctoDe, $dataVenctoAte])
+                        ->where(function ($query) use ($search) {
+                            $query->where([
+                            ['empresa', 'like' , '%' . $search . '%'],
+                            ])->orWhere([
+                            ['cidade', 'like', '%' . $search . '%'],
+                            ]);
+                        })
                         ->orderBy('empresa', 'asc')
                         ->orderBy($field, $sort)
                         ->get();
@@ -130,8 +137,6 @@ class HomeController extends Controller
                     $nomearquivo = $xml['RetornaBoletos']['titulo'].'-'.$xml['RetornaBoletos']['num_id_titulo'].'.pdf';
                     file_put_contents( public_path().'/downloads/'.$nomearquivo, base64_decode( $xml['RetornaBoletos']['arq_boleto']) );
 
-                    $headers = array('Content-Type: application/pdf');
-                    return response()->download($nomearquivo, $nomearquivo, $headers);
                 }
 
             
@@ -140,6 +145,12 @@ class HomeController extends Controller
             }
         }
 
+        if($nomearquivo){
+            $file = public_path(). "/downloads/".$nomearquivo;
+            $headers = array('Content-Type: application/pdf');
+            eventLogServices::create(Auth::user()->id, 'Usuário realizou download do titulo: '.$nomearquivo.'!');
+            return response()->download( $file , $nomearquivo, $headers);
+        }
     }
 
 }

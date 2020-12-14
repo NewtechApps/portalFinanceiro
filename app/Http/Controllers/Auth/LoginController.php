@@ -216,7 +216,6 @@ class LoginController extends Controller
                 
                 } catch (\Exception $e) {
                     log::Debug($e->getMessage());
-                    $xml = array('RetornaBoletos'=>[]);
                 }
             }
         }
