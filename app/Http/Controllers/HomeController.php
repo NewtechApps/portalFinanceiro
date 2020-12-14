@@ -127,18 +127,19 @@ class HomeController extends Controller
                     $xml = json_encode($xml);
                     $xml = json_decode($xml, true);
 
+                    $nomearquivo = $xml['RetornaBoletos']['titulo'].'-'.$xml['RetornaBoletos']['num_id_titulo'].'.pdf';
+                    file_put_contents( public_path().'/downloads/'.$nomearquivo, base64_decode( $xml['RetornaBoletos']['arq_boleto']) );
+
+                    $headers = array('Content-Type: application/pdf');
+                    return response()->download($nomearquivo, $nomearquivo, $headers);
                 }
 
             
             } catch (\Exception $e) {
-                log::Debug($e->getMessage());
+                log::Debug('ERRO: '.$e->getMessage());
             }
         }
 
-
-        $file = public_path(). "/downloads/info.pdf";
-        $headers = array('Content-Type: application/pdf');
-        return response()->download($file, 'boleto-'.$id.'.pdf', $headers);
     }
 
 }

@@ -91,8 +91,8 @@ class UsersController extends Controller
     public function delete(Request $request)
     {
         try {
-            DB::table('boletos')->where('id', '=', $request->id)->delete();
-            DB::table('usuario')->where('id', '=', $request->id)->delete();
+            DB::table('boletos')->where('id_usuario', '=', $request->id_usuario)->delete();
+            DB::table('usuario')->where('id', '=', $request->id_usuario)->delete();
         } catch (\Exception $e) {
             log::Debug('ERRO: '.$e->getMessage());
         }

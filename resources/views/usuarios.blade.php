@@ -44,6 +44,7 @@
                     <th><a class="linktd" href='#' onClick="tablesorter('name');">Nome</a></th>
                     <th><a class="linktd" href='#' onClick="tablesorter('email');">E-mail</a></th>
                     <th><a class="linktd">Status</a></th>
+                    <th class="text-right"></th>
                 </tr>
                 </thead>
 
@@ -55,6 +56,17 @@
                         <td>{{ $usuario->name }}</td>
                         <td>{{ $usuario->email }}</td>
                         <td>{{ $usuario->ativo=='N' ? "Inativo" : "Ativo" }}</td>
+                        <td class="text-right" style="vertical-align: middle">
+                        <form id="frm_del_usuario_{{ $usuario->id }}" action="{{ url('usuarios/delete') }}" method="post">
+    
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <input name="id_usuario" id="id_usuario" value="{{ $usuario->id }}" type="hidden"></input>                
+                            <a class='fas fa-eraser' title="Deletar" href="#delete" data-toggle="modal" data-codigo   ="{{ $usuario->id }}"
+                                                                                                        data-descricao="{{ $usuario->name }}"></a>
+                        </form>
+                        </td>
+
                     </tr>
                     @endforeach
 
@@ -63,6 +75,29 @@
         </div>
     </div> 
 </div> 
+
+
+
+<div class="modal fade" id="delete">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" role='document'>
+            <div class="modal-header pl-4">
+                <span class="linhaMestra" class="modal-title" id="modal-title">Exclusão de Registro!</span>
+            </div>
+            <div class="modal-body pl-4">
+                <div class="row col-md-12" id="intro">
+                    Você tem certeza que deseja excluir o registro?
+                </div>
+                <div class="row col-md-12" id="description"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="submit" class="btn btn-sm btn-secondary" id="delete-btn" >Excluir</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 {!! Form::open( array('id'=>'frm_incUsuario') ) !!}

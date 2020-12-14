@@ -26,6 +26,7 @@ Route::group(['prefix' => 'usuarios'], function () {
     Route::get('perfil'   , 'UsersController@perfil');
     Route::post('create'  , 'UsersController@create');
     Route::post('password', 'UsersController@password');
+    Route::delete('delete', 'UsersController@delete');
 });
 
 Route::group(['prefix' => 'faleConosco'], function () {
