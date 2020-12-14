@@ -48,6 +48,8 @@ class HomeController extends Controller
                       $query->where([
                             ['name', 'like' , '%' . $search . '%'],
                             ])->orWhere([
+                            ['login', 'like', '%' . $search . '%'],
+                            ])->orWhere([
                             ['mensagem', 'like', '%' . $search . '%'],
                             ]);
                        })
@@ -136,6 +138,8 @@ class HomeController extends Controller
 
                     $nomearquivo = $xml['RetornaBoletos']['titulo'].'-'.$xml['RetornaBoletos']['num_id_titulo'].'.pdf';
                     file_put_contents( public_path().'/downloads/'.$nomearquivo, base64_decode( $xml['RetornaBoletos']['arq_boleto']) );
+
+                    log::Debug($nomearquivo);
 
                 }
 

@@ -5,7 +5,7 @@
 
             <li class="nav-item active">
                <a class="navbar brand" style="padding-top: 0px;">
-               <img src="images/favicon.png" class="rounded" height='30' style="background-color: white">
+               <img src="{{ asset('images/favicon.png') }}" class="rounded" height='30' style="background-color: black">
                </a>
             </li>
 

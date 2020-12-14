@@ -132,7 +132,6 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
 
-
         if(Auth::user()->tipo=="C"){
 
             $boletos = array();
@@ -175,10 +174,10 @@ class LoginController extends Controller
                     $response = $client->consultaBoletos($params);
                     $response = json_encode($response);
                     $response = json_decode($response, true);
+                    log::Debug($response);
 
                     $xml = new SimpleXMLElement($response['lcXmlOutput']);
                     if($xml){
-
 
                         DB::table('boletos')->where('id_usuario', '=', Auth::user()->id)->delete();
 
