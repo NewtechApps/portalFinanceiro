@@ -17,9 +17,11 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', function () { return view('auth.login'); });
+Route::get('/mailMessage', function () { return view('auth.mailMessage'); });
+
 Route::get('/home',  'HomeController@index')->name('home');
 Route::get('/boleto/{id}', 'HomeController@getDownload');
-Route::get('/mailMessage', function () { return view('auth.mailMessage'); });
+
 
 Route::group(['prefix' => 'usuarios'], function () {
     Route::get('/'        , 'UsersController@index');

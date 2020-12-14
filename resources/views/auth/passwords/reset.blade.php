@@ -1,4 +1,6 @@
-@include('layouts.padraoLogin')
+@extends('layouts.padraoLogin')
+
+@section('content')
 <div class="container-fluid" style="margin-top: 23vh;">
 
     <div class="row justify-content-center">
@@ -45,3 +47,4 @@
         </div>
     </div>
 </div>
+@endsection
