@@ -14,7 +14,7 @@ class CreateBoletosTable extends Migration
     public function up()
     {
         Schema::create('boletos', function (Blueprint $table) {
-            $table->string('titulo',20)->unique();
+            $table->string('titulo',20);
             $table->string('CNPJ',20);
             $table->string('empresa');
             $table->string('cidade');
