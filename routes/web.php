@@ -37,8 +37,8 @@ Route::group(['prefix' => 'faleConosco'], function () {
 });
 
 Route::group(['prefix' => 'param'], function () {
-    Route::get('/'      , 'parametersController@index');
-    Route::post('update', 'parametersController@update');
+    Route::get('/'      , 'ParametersController@index');
+    Route::post('update', 'ParametersController@update');
 });
 
 

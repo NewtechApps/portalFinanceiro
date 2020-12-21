@@ -1,7 +1,7 @@
 @extends('layouts.layoutPadrao')
 
 @section('content')
-{!! Form::open( array('id'=>'frm_upd_param', 'action'=>'parametersController@update', ) ) !!}
+{!! Form::open( array('id'=>'frm_upd_param', 'action'=>'ParametersController@update', ) ) !!}
 {{ csrf_field() }}
 <div class="container-fluid" style="margin-top: 10vh;">
     <div class="row justify-content-center">

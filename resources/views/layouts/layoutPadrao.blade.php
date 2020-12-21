@@ -39,7 +39,7 @@
         @include('menu')
         @yield('header')
         @yield('content')
-        @include('layouts\footer')
+        @include('layouts.footer')
     </div>
 </body>
 </html>
