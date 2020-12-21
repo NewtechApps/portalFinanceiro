@@ -14,6 +14,7 @@ class CreateBoletosTable extends Migration
     public function up()
     {
         Schema::create('boletos', function (Blueprint $table) {
+            $table->id();
             $table->string('titulo',20);
             $table->string('CNPJ',20);
             $table->string('empresa');
@@ -25,9 +26,8 @@ class CreateBoletosTable extends Migration
             $table->float('valor_original',8,2);
             $table->float('valor_saldo',8,2);
             $table->float('valor_atualizado',8,2);
-            $table->bigInteger('id_usuario',20);
-            $table->bigInteger('id_titulo',20);
-            $table->primary(['titulo', 'CNPJ', 'emissao']);
+            $table->unsignedInteger('id_usuario',20)->change();
+            $table->unsignedinteger('id_titulo',20)->change();
         });
     }
 

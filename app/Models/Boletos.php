@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 class Boletos extends Model
 {
     protected $table = 'boletos';
-    protected $primaryKey = 'titulo';
+    protected $primaryKey = 'id';
 
     public $timestamps    = false;
     public $autoincrement = true;
