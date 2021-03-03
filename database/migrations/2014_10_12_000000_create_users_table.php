@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\Usuario;    
 
 class CreateUsersTable extends Migration
 {
@@ -25,6 +26,18 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+
+
+        $usuario = new Usuario();
+        $usuario->name   = 'Administrador do Portal';
+        $usuario->email  = env('MAIL_FROM_ADDRESS');
+        $usuario->login  = 'portal.admin';
+        $usuario->tipo   = 'A';
+        $usuario->ativo  = 'A';
+        $usuario->primeiro = "N";
+        $usuario->password = Hash::make("admin123");
+        $usuario->save();
     }
 
     /**

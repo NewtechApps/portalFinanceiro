@@ -74,7 +74,7 @@ class LoginController extends Controller
         ]);
     }
 
-
+/*
     protected function login(Request $request)
     {
 
@@ -127,7 +127,7 @@ class LoginController extends Controller
             }
         }
     }
-
+*/
 
     protected function authenticated(Request $request, $user)
     {

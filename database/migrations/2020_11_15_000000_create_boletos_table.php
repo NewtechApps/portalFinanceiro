@@ -26,8 +26,8 @@ class CreateBoletosTable extends Migration
             $table->float('valor_original',8,2);
             $table->float('valor_saldo',8,2);
             $table->float('valor_atualizado',8,2);
-            $table->unsignedInteger('id_usuario',20)->change();
-            $table->unsignedinteger('id_titulo',20)->change();
+            $table->biginteger('id_usuario')->unsigned();
+            $table->biginteger('id_titulo')->unsigned();
         });
     }
 
