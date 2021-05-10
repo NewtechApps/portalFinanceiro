@@ -3,6 +3,7 @@
 @section('content')
 {!! Form::open( array('id'=>'frm_conosco', 'action'=>'FaleConoscoController@enviar') ) !!}
 {{ csrf_field() }}
+
 <div class="container-fluid" style="margin-top: 7vh;">
     <div class="row justify-content-center">
         <div class="col-md-5">
@@ -22,7 +23,7 @@
 
                         <div class="col-md-12">
                         {!! Form::label("assunto", "Assunto:", ["class"=>"col-form-label pl-0"]) !!}
-                        {!! Form::text("assunto", null, ["class"=>"form-control"]) !!}
+                        {!! Form::text("assunto", null, ["class"=>"form-control", "autofocus"]) !!}
                         </div>
 
                         <div class="col-md-12">
@@ -37,20 +38,37 @@
                 <div class="card-footer" style="background-color: white;">
                     <div class="row justify-content-end">
                     <button type="button" class="btn btn-sm btn-secondary mr-1" id="insert-canc-btn" onclick="window.location='{{ url("/home") }}' ">Cancelar</button>
-                    <button type="button" class="btn btn-sm btn-secondary"      id="insert-conf-btn" onclick='javascript:$("#frm_conosco").submit();'>Enviar</button>
+                    <button type="button" class="btn btn-sm btn-secondary"      id="insert-conf-btn" onclick="gravarRegistro();">Enviar</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+@include('layouts.info')
 {!! Form::close() !!}
 
 
 <script type='text/javascript'>
-$(document).ready(function(){
-    $('#assunto').focus();
-});
-</script>
+function gravarRegistro() {
 
+    $("#spinner-div").removeClass("d-nome").addClass("d-flex");
+    $.ajax({
+        url:  $('#frm_conosco').attr('action'),
+        data: $('#frm_conosco').serialize(),
+        type: 'POST',
+        
+        success: function(response){
+        $("#info").modal('show');
+        },
+
+        error: function() {
+        window.location.href = '/';
+        },
+    });
+    }
+
+
+</script>
 @endsection

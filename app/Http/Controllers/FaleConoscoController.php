@@ -10,7 +10,8 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
-    
+use App\Models\Usuario;  
+use App\Notifications\FaleConosco;
 use App\Services\eventLogServices;
 class FaleConoscoController extends Controller
 {
@@ -34,8 +35,11 @@ class FaleConoscoController extends Controller
 
     public function enviar(Request $request) 
     {
+        $param = DB::table('parameters')->where('name', '=', 'email')->first();
+        $user =  Usuario::where('email', '=', $param->value )->first();
+        $user->notify( new FaleConosco($request->all()) );
 
-        return redirect('/home');
+        return response()->json(['code'=>'200']);
     }    
 
 }

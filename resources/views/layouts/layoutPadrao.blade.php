@@ -38,6 +38,14 @@
        
         @include('menu')
         @yield('header')
+
+        <!-- Div para Spinner -->
+        <div class="d-none justify-content-center align-items-center" id="spinner-div">
+            <div class="spinner-border text-light" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+
         @yield('content')
         @include('layouts.footer')
     </div>
