@@ -35,19 +35,15 @@ class UsersController extends Controller
         $sort   = $request->get('sort')  ?? 'asc';
         
         $usuario = DB::table('usuario')
-                  ->where(function ($query) use ($search) {
-                  $query->where([
-                            ['name', 'like' , '%' . $search . '%'],
-                        ])->orWhere([
-                            ['login', 'like', '%' . $search . '%'],
-                        ]);
-                   })
+                    ->where(function ($query) use ($search) {
+                        $query->where('name' , 'like', '%' . $search . '%')
+                            ->orWhere('login', 'like', '%' . $search . '%')
+                            ->orWhere('email', 'like', '%' . $search . '%');
+                    })
                    ->orderBy($field, $sort)
                    ->get();
         return view('usuarios')->with('usuarios', $usuario);
     }
-
-
 
     public function create(Request $request)
     {
@@ -99,12 +95,10 @@ class UsersController extends Controller
         return redirect($request->header('referer'));
     }    
 
-
     public function perfil(Request $request) 
     {
         return view('auth.passwords.update');
     }    
-
 
     public function password(Request $request) 
     {
